@@ -1,0 +1,56 @@
+{
+  "Equipment": [
+    {
+      "EquipmentId": "02300",
+      "EquipmentName": "Conveyance 1000",
+      "Parts": [
+        {
+          "id": 1,
+          "name": "Roller",
+          "class": "Roller",
+          "partNumber": 123456,
+          "description": "This is a roller",
+          "quantity": 10
+        },
+        {
+          "id": 1,
+          "name": "Roller",
+          "class": "Roller",
+          "partNumber": 123456,
+          "description": "This is a roller",
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "EquipmentId": 1,
+      "EquipmentName": "Conveyance 1000",
+      "Parts": [
+        {
+          "id": 1,
+          "name": "Roller",
+          "class": "Roller",
+          "Amazon Part Number": "123456",
+          "description": "This is a roller",
+          "quantity": 10
+        },
+        {
+          "id": 1,
+          "name": "Snub Roller",
+          "class": "Roller",
+          "Amazon Part Number": "123456",
+          "description": "This is a roller",
+          "quantity": 10
+        },
+        {
+          "id": 1,
+          "name": "Belt",
+          "class": "Roller",
+          "Amazon Part Number": "123456",
+          "description": "This is a roller",
+          "quantity": 10
+        }
+      ]
+    }
+  ]
+}
