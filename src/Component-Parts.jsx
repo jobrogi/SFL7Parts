@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import Data from "./EquipmentParts.json";
 
+//extra comment
 // Context for component to component communication
 // import { EquipmentContext } from "./EquipmentDataProvider";
 
