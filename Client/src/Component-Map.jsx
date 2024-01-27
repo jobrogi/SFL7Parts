@@ -1,7 +1,6 @@
 import PolyLine from "./PolyLine";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import UI from "./UI";
-import { Roller, Belt } from "./Equipment.js";
 
 // Context for component to component communication
 // import { EquipmentContext } from "./EquipmentDataProvider";
@@ -92,9 +91,10 @@ function Map({ onUpdate }) {
         style={{
           transform: `translate(${pos.x}px, ${pos.y}px) scale(${scale})`,
         }}
+        viewBox="350 0 1500 1000"
       >
         {/* 1100 + last half of 1200 side. */}
-        <g name="Line 1">
+        <g name="Line 1" className="">
           <PolyLine
             type="Long"
             style={{ transform: "translate(1250px, 590px" }}

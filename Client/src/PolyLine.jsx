@@ -1,13 +1,12 @@
 import React from "react";
 
 function PolyLine(props) {
-  const handlePolyClick = () => {
-    // console.log(props.EquipmentId);
-  };
   // Using switch cases to easily create a polyline for every belt we have.
   // Then using the translate property to move the polyline where i need it.
   let points;
   switch (props.type) {
+    default:
+      break;
     case "Short":
       points = "0,0 25,0";
       break;

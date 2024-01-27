@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import React from "react";
 import Data from "./EquipmentParts.json";
 
@@ -13,7 +13,7 @@ function Parts(props) {
     Parts: [],
   });
 
-  const FindEquipment = () => {
+  const FindEquipment = useCallback(() => {
     // console.log(Data.Equipment);
     //
 
@@ -22,17 +22,13 @@ function Parts(props) {
         (equipment) => equipment.EquipmentId === props.equipmentID
       )
     );
-  };
+  }, [props.equipmentID]);
 
   useEffect(() => {
     // setCurrentEquipment(props.equipmentID);
     // console.log("Effect runs: Equipment has changed to", props.equipmentID);
     FindEquipment();
-  }, [props.equipmentID]);
-
-  useEffect(() => {
-    console.log(currentEquipment);
-  }, [currentEquipment]);
+  }, [props.equipmentID, FindEquipment]);
 
   return (
     <div className="">
