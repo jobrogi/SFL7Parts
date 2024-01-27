@@ -1,6 +1,6 @@
 import PolyLine from "./PolyLine";
-import { useEffect, useState } from "react";
-import UI from "./UI";
+import React from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // Context for component to component communication
 // import { EquipmentContext } from "./EquipmentDataProvider";
@@ -35,14 +35,17 @@ function Map({ onUpdate }) {
   };
 
   // While the mouse is held down it will constantly update the newX and newY to the difference of the mouse pos and delta pos.
-  const handleMouseMove = (e) => {
-    if (isDragging === true) {
-      const newX = e.clientX - delta.x;
-      const newY = e.clientY - delta.y;
+  const handleMouseMove = useCallback(
+    (e) => {
+      if (isDragging === true) {
+        const newX = e.clientX - delta.x;
+        const newY = e.clientY - delta.y;
 
-      setPos({ x: newX, y: newY });
-    }
-  };
+        setPos({ x: newX, y: newY });
+      }
+    },
+    [isDragging, delta.x, delta.y]
+  );
 
   // When the mouse button is let up it stops the dragging.
   const handleMouseUp = (e) => {
@@ -61,7 +64,7 @@ function Map({ onUpdate }) {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging]); // Re-run the effect if isDragging changes
+  }, [isDragging, handleMouseMove]); // Re-run the effect if isDragging changes
   //------------------------------------------------------------------------------------------------------------------------------------------
 
   // SVG ZOOMING -----------------------------------------------------------------------------------------------------------------------------
@@ -296,8 +299,6 @@ function Map({ onUpdate }) {
           />
         </g>
       </svg>
-
-      <UI></UI>
     </div>
   );
 }
