@@ -22,6 +22,9 @@ function PolyLine(props) {
     case "Portec":
       points = "0,10 0,0 10,0 ";
       break;
+    case "Medium-Long":
+      points = "0,0 75,0";
+      break;
   }
   return (
     <polyline

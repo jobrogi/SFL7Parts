@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import Map from "./Component-Map";
 import Parts from "./Component-Parts";
-import UI from "./UI";
 
 // import Navbar from "./navbar";
 function App() {
@@ -25,9 +24,6 @@ function App() {
       {/* Side Panel Parts List */}
       {/* Passing the info from the hook to this component. */}
       <Parts equipmentID={equipmentID} />
-
-      {/* Overlay UI. */}
-      <UI></UI>
     </div>
   );
 }

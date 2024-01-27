@@ -1,9 +1,7 @@
 import PolyLine from "./PolyLine";
 import React from "react";
 import { useCallback, useEffect, useState } from "react";
-
-// Context for component to component communication
-// import { EquipmentContext } from "./EquipmentDataProvider";
+import UI from "./UI";
 
 function Map({ onUpdate }) {
   // Pannning Variables
@@ -13,15 +11,15 @@ function Map({ onUpdate }) {
 
   // Zooming Variables
   const [scale, setScale] = useState(1);
-
   const minZoom = 0.5;
   const maxZoom = 3;
 
-  // Equipment Context
-  // const { equipment, setEquipment } = useContext(EquipmentContext);
-  // const updateEquipmentInfo = (equipmentId) => {
-  //   setEquipment(equipmentId);
-  // };
+  // Layers Variables
+  const [activeLayer, setActiveLayer] = useState(0);
+
+  const updateMapLayers = (activeLayer) => {
+    setActiveLayer(activeLayer);
+  };
 
   // SVG PANNING -----------------------------------------------------------------------------------------------------------------------------
   // Sets the newX and newY const variables. Also allows for dragging.
@@ -97,7 +95,23 @@ function Map({ onUpdate }) {
         viewBox="350 0 1500 1000"
       >
         {/* 1100 + last half of 1200 side. */}
-        <g name="Line 1" className="">
+        <g
+          name="Line 1"
+          className={activeLayer === 1 || activeLayer === 4 ? "" : "hidden"}
+        >
+          <PolyLine
+            type="Medium"
+            style={{ transform: "translate(625px, 425px) rotate(90deg)" }}
+            onClick={() => onUpdate("02345")}
+            name="02345"
+          />
+          <PolyLine
+            type="Portec"
+            style={{
+              transform: "translate(625px,590px) rotate(270deg)",
+              strokeLinejoin: "bevel",
+            }}
+          />
           <PolyLine
             type="Long"
             style={{ transform: "translate(1250px, 590px" }}
@@ -148,7 +162,10 @@ function Map({ onUpdate }) {
 
         {/* 1300 + first half of 1200 side */}
         {/* CHANGE ALERT, need to change between the two portecs how long that belt is on the map.  */}
-        <g name="Line 2">
+        <g
+          name="Line 2"
+          className={activeLayer === 2 || activeLayer === 4 ? "" : "hidden"}
+        >
           <PolyLine
             type="Long"
             style={{
@@ -204,8 +221,28 @@ function Map({ onUpdate }) {
             }}
           />
           <PolyLine
-            type="Short"
-            style={{ transform: "translate(1565px, 655px) rotate(90deg)" }}
+            type="Long"
+            style={{ transform: "translate(1250px, 590px" }}
+          />
+          <PolyLine
+            type="Long"
+            style={{ transform: "translate(945px,590px)" }}
+          />
+          <PolyLine
+            type="Long"
+            style={{ transform: "translate(640px,590px)" }}
+          />
+          <PolyLine
+            type="Portec"
+            style={{
+              transform: "translate(1565px,590px) rotate(90deg)",
+              strokeLinejoin: "bevel",
+            }}
+          />
+          s
+          <PolyLine
+            type="Medium-Long"
+            style={{ transform: "translate(1565px, 605px) rotate(90deg)" }}
           />
           <PolyLine
             type="Portec"
@@ -219,7 +256,6 @@ function Map({ onUpdate }) {
             style={{ transform: "translate(1250px,695px)" }}
           />
           {/* BEGIN SEGMENTS */}
-
           {/* Loops in order to get rid of repetitive code.  */}
           {Array.from({ length: 15 }, (_, index) => (
             <PolyLine
@@ -231,7 +267,10 @@ function Map({ onUpdate }) {
         </g>
 
         {/* Injection Line */}
-        <g name="Line 3">
+        <g
+          name="Line 3"
+          className={activeLayer === 3 || activeLayer === 4 ? "" : "hidden"}
+        >
           <PolyLine
             type="Long"
             style={{ transform: "translate(1250px,745px)" }}
@@ -299,6 +338,9 @@ function Map({ onUpdate }) {
           />
         </g>
       </svg>
+
+      {/* Overlay UI. */}
+      <UI onAction={updateMapLayers}></UI>
     </div>
   );
 }

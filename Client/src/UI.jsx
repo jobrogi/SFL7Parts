@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 
-function UI() {
+function UI({ onAction }) {
   // Active and Not int for button states.
-  // 0 = None, 1 = Line 1, 2 = line 2, 3 = line 3
+  // 0 = None, 1 = Line 1, 2 = line 2, 3 = line 3, 4 = all lines
   const [isActive, setActive] = useState(1);
+
+  if (typeof onAction !== "function") {
+    console.log(onAction);
+    return;
+  }
 
   return (
     // The point of this Component is to dictate which part of the map is showing and what part isnt.
@@ -16,6 +21,7 @@ function UI() {
           <button
             onClick={() => {
               setActive(1);
+              onAction(1);
             }}
             className={
               isActive === 1
@@ -31,6 +37,7 @@ function UI() {
           <button
             onClick={() => {
               setActive(2);
+              onAction(2);
             }}
             className={
               isActive === 2
@@ -45,6 +52,7 @@ function UI() {
           <button
             onClick={() => {
               setActive(3);
+              onAction(3);
             }}
             className={
               isActive === 3
@@ -53,6 +61,22 @@ function UI() {
             }
           >
             Line 3
+          </button>
+        </li>
+
+        <li>
+          <button
+            onClick={() => {
+              setActive(4);
+              onAction(4);
+            }}
+            className={
+              isActive === 4
+                ? "bg-green-500 p-2 hover:border border-green-500 "
+                : "bg-red-500 p-2 hover:border border-red-500 "
+            }
+          >
+            All Lines
           </button>
         </li>
       </ul>
