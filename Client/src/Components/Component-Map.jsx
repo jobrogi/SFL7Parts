@@ -16,7 +16,7 @@ function Map({ onUpdate }) {
       {/* SVG */}
       {/* On Mouse Down will call the handleMouseDown event. and the style will update the position of the entire SVG  */}
       <svg
-        className=" w-full h-full text-white border-2 bg-cc-light-gray cursor-pointer shadow-2xl"
+        className=" w-full h-full text-white border-2 bg-cc-light-gray shadow-2xl"
         // Adjusts where the map is relative to the screen
         viewBox="350 0 1500 1000"
       >
@@ -84,6 +84,14 @@ function Map({ onUpdate }) {
               style={{ transform: `translate(${1235 - index * 15}px, 645px)` }}
             />
           ))}
+
+          <rect
+            x={940}
+            y={633}
+            width={75}
+            height={25}
+            className=" fill-cc-green hover:fill-orange-600 transition-all duration-300 cursor-pointer"
+          ></rect>
         </g>
 
         {/* 1300 + first half of 1200 side */}
@@ -190,6 +198,13 @@ function Map({ onUpdate }) {
               style={{ transform: `translate(${1235 - index * 15}px, 695px)` }}
             />
           ))}
+          <rect
+            x={940}
+            y={683}
+            width={75}
+            height={25}
+            className=" fill-cc-green hover:fill-orange-600 transition-all duration-300 cursor-pointer"
+          ></rect>
         </g>
 
         {/* Injection Line */}
@@ -212,6 +227,15 @@ function Map({ onUpdate }) {
               style={{ transform: `translate(${1235 - index * 15}px, 745px)` }}
             />
           ))}
+
+          {/* Rect is autosal */}
+          <rect
+            x={940}
+            y={733}
+            width={75}
+            height={20}
+            className=" fill-cc-green hover:fill-orange-600 transition-all duration-300 cursor-pointer"
+          ></rect>
 
           <PolyLine
             type="Medium"

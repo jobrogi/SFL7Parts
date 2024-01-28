@@ -25,8 +25,8 @@ function UI({ onAction }) {
             }}
             className={
               isActive === 1
-                ? "bg-green-500 p-2 hover:border border-green-500 "
-                : "bg-red-500 p-2 hover:border border-red-500 "
+                ? "bg-green-500 p-2 hover:border border-green-500 transition-all duration-200"
+                : "bg-red-500 p-2 hover:border border-red-500 transition-all duration-200"
             }
           >
             Line 1
@@ -41,8 +41,8 @@ function UI({ onAction }) {
             }}
             className={
               isActive === 2
-                ? "bg-green-500 p-2 hover:border border-green-500 "
-                : "bg-red-500 p-2 hover:border border-red-500 "
+                ? "bg-green-500 p-2 hover:border border-green-500 transition-all duration-200"
+                : "bg-red-500 p-2 hover:border border-red-500 transition-all duration-200"
             }
           >
             Line 2
@@ -56,8 +56,8 @@ function UI({ onAction }) {
             }}
             className={
               isActive === 3
-                ? "bg-green-500 p-2 hover:border border-green-500 "
-                : "bg-red-500 p-2 hover:border border-red-500 "
+                ? "bg-green-500 p-2 hover:border border-green-500 transition-all duration-200"
+                : "bg-red-500 p-2 hover:border border-red-500 transition-all duration-200"
             }
           >
             Line 3
@@ -80,6 +80,11 @@ function UI({ onAction }) {
           </button>
         </li>
       </ul>
+
+      <button className="fixed bottom-0 left-0 m-4 w-8 h-8 border-2 rounded-full">
+        {" "}
+        <i className="fa-solid fa-info text-white"></i>
+      </button>
     </div>
   );
 }

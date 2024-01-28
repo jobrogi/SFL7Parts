@@ -29,7 +29,7 @@ function PolyLine(props) {
   return (
     <polyline
       points={points}
-      className={`${props.translate} stroke-cc-green fill-none stroke-6 hover:stroke-8 `}
+      className={`${props.translate} stroke-cc-green fill-none stroke-6 hover:stroke-8 cursor-pointer hover:stroke-orange-600 transition-all duration-300`}
       style={props.style}
       onClick={props.onClick}
       name={props.name}
