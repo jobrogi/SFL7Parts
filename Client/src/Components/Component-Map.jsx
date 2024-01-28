@@ -1,97 +1,23 @@
 import PolyLine from "./PolyLine";
 import React from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import UI from "./UI";
 
 function Map({ onUpdate }) {
-  // Pannning Variables
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const [delta, setDelta] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
-
-  // Zooming Variables
-  const [scale, setScale] = useState(1);
-  const minZoom = 0.5;
-  const maxZoom = 3;
-
   // Layers Variables
-  const [activeLayer, setActiveLayer] = useState(0);
+  const [activeLayer, setActiveLayer] = useState(1);
 
   const updateMapLayers = (activeLayer) => {
     setActiveLayer(activeLayer);
   };
 
-  // SVG PANNING -----------------------------------------------------------------------------------------------------------------------------
-  // Sets the newX and newY const variables. Also allows for dragging.
-  const handleMouseDown = (e) => {
-    setDelta({
-      x: e.clientX - pos.x,
-      y: e.clientY - pos.y,
-    });
-
-    setIsDragging(true);
-  };
-
-  // While the mouse is held down it will constantly update the newX and newY to the difference of the mouse pos and delta pos.
-  const handleMouseMove = useCallback(
-    (e) => {
-      if (isDragging === true) {
-        const newX = e.clientX - delta.x;
-        const newY = e.clientY - delta.y;
-
-        setPos({ x: newX, y: newY });
-      }
-    },
-    [isDragging, delta.x, delta.y]
-  );
-
-  // When the mouse button is let up it stops the dragging.
-  const handleMouseUp = (e) => {
-    setTimeout(() => {
-      setIsDragging(false);
-    }, 0);
-  };
-
-  // Needed for window mouse events to ensure its smooth when moving.
-  // Use effect will run once every time the page loads. Then it will re run if the hook isDragging changes.
-  useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseup", handleMouseUp);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [isDragging, handleMouseMove]); // Re-run the effect if isDragging changes
-  //------------------------------------------------------------------------------------------------------------------------------------------
-
-  // SVG ZOOMING -----------------------------------------------------------------------------------------------------------------------------
-  // Negative Delta Y is zooming in and opposite for positive Delta Y
-  const handleWheel = (e) => {
-    let newScale = scale;
-    if (e.deltaY < 0) {
-      // Zoom in
-      newScale = Math.min(scale * 1.1, maxZoom);
-    } else {
-      // Zoom out
-      newScale = Math.max(scale * 0.9, minZoom);
-    }
-
-    setScale(newScale);
-  };
-  //------------------------------------------------------------------------------------------------------------------------------------------
   return (
     <div className="w-screen h-screen bg-cc-dark overflow-hidden ">
       {/* SVG */}
       {/* On Mouse Down will call the handleMouseDown event. and the style will update the position of the entire SVG  */}
       <svg
         className=" w-full h-full text-white border-2 bg-cc-light-gray cursor-pointer shadow-2xl"
-        // Event Handlers
-        onMouseDown={handleMouseDown}
-        onWheel={handleWheel}
-        style={{
-          transform: `translate(${pos.x}px, ${pos.y}px) scale(${scale})`,
-        }}
+        // Adjusts where the map is relative to the screen
         viewBox="350 0 1500 1000"
       >
         {/* 1100 + last half of 1200 side. */}

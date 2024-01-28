@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import React from "react";
-import Data from "./EquipmentParts.json";
+import Data from "../JSON Data/EquipmentParts.json";
 
 //extra comment
 // Context for component to component communication

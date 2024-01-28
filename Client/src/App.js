@@ -1,7 +1,6 @@
 import { useState } from "react";
-import "./App.css";
-import Map from "./Component-Map";
-import Parts from "./Component-Parts";
+import Map from "./Components/Component-Map";
+import Parts from "./Components/Component-Parts";
 
 // import Navbar from "./navbar";
 function App() {
